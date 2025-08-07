@@ -1,0 +1,58 @@
+{
+  "model": {
+    "name": "SemanticGuidedXFeat",
+    "semantic_channels": 20,
+    "top_k": 4096,
+    "detection_threshold": 0.05,
+    "descriptor_dim": 64
+  },
+  "training": {
+    "batch_size": 16,
+    "epochs": 100,
+    "learning_rate": 1e-4,
+    "min_lr": 1e-6,
+    "weight_decay": 1e-4,
+    "num_workers": 4,
+    "image_size": 256,
+    "log_interval": 10,
+    "save_interval": 10,
+    "use_wandb": false
+  },
+  "loss_weights": {
+    "det_weight": 1.0,
+    "desc_weight": 1.0,
+    "seg_weight": 0.5
+  },
+  "data": {
+    "train_data_path": "./data/train",
+    "val_data_path": "./data/val",
+    "semantic_classes": [
+      "background", "road", "sidewalk", "building", "wall", "fence",
+      "pole", "traffic_light", "traffic_sign", "vegetation", "terrain",
+      "sky", "person", "rider", "car", "truck", "bus", "train",
+      "motorcycle", "bicycle"
+    ]
+  },
+  "evaluation": {
+    "repeatability_threshold": 3.0,
+    "matching_threshold": 3.0,
+    "runtime_runs": 100,
+    "semantic_consistency_threshold": 0.5
+  },
+  "optimization": {
+    "quantize": true,
+    "prune": false,
+    "mixed_precision": true
+  },
+  "output": {
+    "output_dir": "./outputs",
+    "checkpoint_dir": "./checkpoints",
+    "log_dir": "./logs",
+    "eval_dir": "./evaluation_results"
+  },
+  "hardware": {
+    "device": "cuda",
+    "num_gpus": 1,
+    "gpu_memory": "8GB"
+  }
+}
