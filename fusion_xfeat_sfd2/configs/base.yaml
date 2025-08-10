@@ -1,0 +1,133 @@
+# 基础公共配置 (被其它阶段配置继承)
+project: fusion_xfeat_sfd2
+seed: 2025
+output_dir: experiments/outputs
+log_dir: experiments/logs
+save_interval: 1
+print_interval: 50
+val_interval: 1
+amp: true
+cudnn_deterministic: true
+benchmark: false
+
+hardware:
+  gpus: [0]
+  num_workers: 8
+  pin_memory: true
+  persistent_workers: true
+  precision: bf16  # bf16|fp16|fp32
+
+dataset:
+  root: /path/to/datasets
+  cache: ./cache
+  train:
+    name: megadepth_pairs
+    splits: [train]
+    batch_size: 4
+    shuffle: true
+  val:
+    name: hpatches
+    splits: [test]
+    batch_size: 1
+    shuffle: false
+  augmentation:
+    photometric: true
+    geometric: true
+
+model:
+  backbone:
+    name: xfeat
+    pretrained: weights/xfeat.pt
+    freeze_bn: true
+  teacher:
+    name: sfd2_teacher
+    weights: weights/sfd2_teacher.ckpt
+    enabled: true
+  adapter:
+    type: conv_attn  # conv|film|cross_attn
+    dim: 256
+    heads: 4
+  matcher:
+    name: lighterglue
+    weights: weights/xfeat-lighterglue.pt
+
+loss:
+  weights:
+    det: 1.0
+    desc: 1.0
+    struct: 1.0
+    semantic: 0.5
+    consistency: 0.5
+    distill: 1.0
+    semantic_distill: 0.5
+  temperature: 0.07
+  semantic_pseudo:
+    confidence_thresh: 0.5  # 语义伪标签置信度阈值 (<阈值忽略)
+    image_pooling: true     # true=整图标签, false=像素级伪标签
+    high_thresh: 0.7        # 双阈值：高置信强化
+    low_thresh: 0.4         # 低于此阈值忽略，中间区间降权
+    mid_weight: 0.5         # 中间区间样本权重
+    use_memory_bank: true   # 启用全局类别原型记忆
+    memory_bank_momentum: 0.9
+
+train:
+  max_epochs: 30
+  grad_clip: 1.0
+  optimizer:
+    name: adamw
+    lr: 1e-4
+    weight_decay: 0.01
+    betas: [0.9, 0.999]
+  scheduler:
+    name: cosine
+    warmup_epochs: 2
+    min_lr: 1e-6
+    t_mult: 1.0
+    cycle_decay: 1.0
+
+val:
+  metrics:
+    - mma
+    - pose_recall
+  topk: 2000
+  nms_radius: 4
+  run_after_epochs: 1
+  enable: true
+
+eval:
+  aachen:
+    thresholds: [[0.25,2.0],[0.5,5.0],[1.0,10.0]]
+  hpatches:
+    pixel_thresh: [1,3,5]
+
+logging:
+  use_tensorboard: true
+  use_wandb: false
+  wandb_project: fusion_xfeat_sfd2
+  save_matches_visualization: true
+  json_metrics: true
+
+adaptive_loss:
+  enabled: true
+  method: uncertainty  # uncertainty|none (GradNorm 可后续扩展)
+  init_log_var: 0.0
+
+repro:
+  git_hash_record: true
+  config_hash_record: true
+  save_env_yaml: true
+
+pose_eval:
+  pnp_structure_json: datasets/aachen_sfm.json   # SfM结构: images/points3d，见 eval/pnp_localization.py 头部注释
+  min_inliers: 12
+  ransac_reproj_err: 4.0
+
+visualization:
+  output_dir: visualizations
+  max_matches: 200
+  draw_semantic: true
+
+distill:
+  dynamic_layer_weight: true
+  layer_weight_norm: l1   # l1|softmax
+  variance_eps: 1e-6

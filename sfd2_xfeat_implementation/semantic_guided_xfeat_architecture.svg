@@ -1,0 +1,270 @@
+<svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- 定义渐变和样式 -->
+    <linearGradient id="inputGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e3f2fd;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#bbdefb;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="backboneGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f3e5f5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e1bee7;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="semanticGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e8f5e8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#c8e6c9;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="detectorGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fff3e0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffe0b2;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="descriptorGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fce4ec;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f8bbd0;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- 箭头标记 -->
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" 
+            refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333" />
+    </marker>
+  </defs>
+  
+  <!-- 背景 -->
+  <rect width="1200" height="800" fill="#f5f5f5"/>
+  
+  <!-- 标题 -->
+  <text x="600" y="30" text-anchor="middle" font-size="24" font-weight="bold" fill="#333">
+    语义引导的XFeat网络架构图
+  </text>
+  
+  <!-- 输入层 -->
+  <rect x="50" y="80" width="120" height="60" rx="10" fill="url(#inputGrad)" stroke="#1976d2" stroke-width="2"/>
+  <text x="110" y="115" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">输入图像</text>
+  <text x="110" y="130" text-anchor="middle" font-size="12" fill="#666">(B, 1, H, W)</text>
+  
+  <!-- 预处理 -->
+  <rect x="220" y="80" width="100" height="60" rx="10" fill="#e1f5fe" stroke="#0288d1" stroke-width="2"/>
+  <text x="270" y="115" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">预处理</text>
+  <text x="270" y="130" text-anchor="middle" font-size="12" fill="#666">归一化</text>
+  
+  <!-- 骨干网络标题 -->
+  <text x="450" y="70" text-anchor="middle" font-size="16" font-weight="bold" fill="#7b1fa2">
+    XFeat骨干网络
+  </text>
+  
+  <!-- Block1 -->
+  <rect x="370" y="80" width="80" height="50" rx="5" fill="url(#backboneGrad)" stroke="#7b1fa2" stroke-width="2"/>
+  <text x="410" y="110" text-anchor="middle" font-size="12" font-weight="bold" fill="#333">Block1</text>
+  <text x="410" y="122" text-anchor="middle" font-size="10" fill="#666">1→24ch</text>
+  
+  <!-- Skip1 -->
+  <rect x="370" y="150" width="80" height="30" rx="5" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="1" stroke-dasharray="5,5"/>
+  <text x="410" y="170" text-anchor="middle" font-size="10" fill="#333">Skip1</text>
+  
+  <!-- Block2 -->
+  <rect x="470" y="80" width="80" height="50" rx="5" fill="url(#backboneGrad)" stroke="#7b1fa2" stroke-width="2"/>
+  <text x="510" y="110" text-anchor="middle" font-size="12" font-weight="bold" fill="#333">Block2</text>
+  <text x="510" y="122" text-anchor="middle" font-size="10" fill="#666">24ch</text>
+  
+  <!-- 语义注意力模块 -->
+  <rect x="470" y="150" width="120" height="80" rx="10" fill="url(#semanticGrad)" stroke="#388e3c" stroke-width="2"/>
+  <text x="530" y="175" text-anchor="middle" font-size="12" font-weight="bold" fill="#333">语义注意力</text>
+  <text x="530" y="190" text-anchor="middle" font-size="10" fill="#666">SemanticAttention</text>
+  <text x="530" y="205" text-anchor="middle" font-size="10" fill="#666">24→20ch</text>
+  <text x="530" y="218" text-anchor="middle" font-size="10" fill="#666">注意力增强</text>
+  
+  <!-- Block3 -->
+  <rect x="620" y="80" width="80" height="50" rx="5" fill="url(#backboneGrad)" stroke="#7b1fa2" stroke-width="2"/>
+  <text x="660" y="110" text-anchor="middle" font-size="12" font-weight="bold" fill="#333">Block3</text>
+  <text x="660" y="122" text-anchor="middle" font-size="10" fill="#666">24→64ch</text>
+  
+  <!-- Block4 -->
+  <rect x="720" y="80" width="80" height="50" rx="5" fill="url(#backboneGrad)" stroke="#7b1fa2" stroke-width="2"/>
+  <text x="760" y="110" text-anchor="middle" font-size="12" font-weight="bold" fill="#333">Block4</text>
+  <text x="760" y="122" text-anchor="middle" font-size="10" fill="#666">64ch</text>
+  
+  <!-- Block5 -->
+  <rect x="820" y="80" width="80" height="50" rx="5" fill="url(#backboneGrad)" stroke="#7b1fa2" stroke-width="2"/>
+  <text x="860" y="110" text-anchor="middle" font-size="12" font-weight="bold" fill="#333">Block5</text>
+  <text x="860" y="122" text-anchor="middle" font-size="10" fill="#666">64→128→64ch</text>
+  
+  <!-- 特征融合 -->
+  <rect x="720" y="150" width="100" height="50" rx="5" fill="url(#backboneGrad)" stroke="#7b1fa2" stroke-width="2"/>
+  <text x="770" y="175" text-anchor="middle" font-size="12" font-weight="bold" fill="#333">特征融合</text>
+  <text x="770" y="190" text-anchor="middle" font-size="10" fill="#666">BlockFusion</text>
+  
+  <!-- 输出特征 -->
+  <rect x="850" y="150" width="100" height="50" rx="10" fill="#e8eaf6" stroke="#3f51b5" stroke-width="2"/>
+  <text x="900" y="175" text-anchor="middle" font-size="12" font-weight="bold" fill="#333">特征图</text>
+  <text x="900" y="190" text-anchor="middle" font-size="10" fill="#666">64ch</text>
+  
+  <!-- 关键点检测分支标题 -->
+  <text x="200" y="280" text-anchor="middle" font-size="16" font-weight="bold" fill="#e65100">
+    关键点检测分支
+  </text>
+  
+  <!-- 关键点检测器 -->
+  <rect x="120" y="300" width="160" height="80" rx="10" fill="url(#detectorGrad)" stroke="#e65100" stroke-width="2"/>
+  <text x="200" y="325" text-anchor="middle" font-size="12" font-weight="bold" fill="#333">关键点检测器</text>
+  <text x="200" y="340" text-anchor="middle" font-size="10" fill="#666">SemanticKeypointDetector</text>
+  <text x="200" y="355" text-anchor="middle" font-size="10" fill="#666">64→65ch</text>
+  <text x="200" y="370" text-anchor="middle" font-size="10" fill="#666">+语义约束</text>
+  
+  <!-- 关键点输出 -->
+  <rect x="50" y="420" width="100" height="50" rx="10" fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
+  <text x="100" y="445" text-anchor="middle" font-size="12" font-weight="bold" fill="#333">关键点</text>
+  <text x="100" y="460" text-anchor="middle" font-size="10" fill="#666">Keypoints</text>
+  
+  <!-- 可靠性图输出 -->
+  <rect x="170" y="420" width="100" height="50" rx="10" fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
+  <text x="220" y="445" text-anchor="middle" font-size="12" font-weight="bold" fill="#333">可靠性图</text>
+  <text x="220" y="460" text-anchor="middle" font-size="10" fill="#666">Heatmap</text>
+  
+  <!-- 描述符生成分支标题 -->
+  <text x="550" y="280" text-anchor="middle" font-size="16" font-weight="bold" fill="#c2185b">
+    描述符生成分支
+  </text>
+  
+  <!-- 描述符生成器 -->
+  <rect x="470" y="300" width="160" height="80" rx="10" fill="url(#descriptorGrad)" stroke="#c2185b" stroke-width="2"/>
+  <text x="550" y="325" text-anchor="middle" font-size="12" font-weight="bold" fill="#333">描述符生成器</text>
+  <text x="550" y="340" text-anchor="middle" font-size="10" fill="#666">SemanticDescriptorGenerator</text>
+  <text x="550" y="355" text-anchor="middle" font-size="10" fill="#666">64→64ch</text>
+  <text x="550" y="370" text-anchor="middle" font-size="10" fill="#666">+特征融合</text>
+  
+  <!-- 描述符输出 -->
+  <rect x="500" y="420" width="100" height="50" rx="10" fill="#fce4ec" stroke="#c2185b" stroke-width="2"/>
+  <text x="550" y="445" text-anchor="middle" font-size="12" font-weight="bold" fill="#333">描述符</text>
+  <text x="550" y="460" text-anchor="middle" font-size="10" fill="#666">Descriptors</text>
+  
+  <!-- 语义注意力输出 -->
+  <rect x="650" y="420" width="120" height="50" rx="10" fill="url(#semanticGrad)" stroke="#388e3c" stroke-width="2"/>
+  <text x="710" y="445" text-anchor="middle" font-size="12" font-weight="bold" fill="#333">语义注意力图</text>
+  <text x="710" y="460" text-anchor="middle" font-size="10" fill="#666">Semantic Attention</text>
+  
+  <!-- 后处理模块 -->
+  <rect x="350" y="520" width="200" height="80" rx="10" fill="#f5f5f5" stroke="#616161" stroke-width="2"/>
+  <text x="450" y="545" text-anchor="middle" font-size="12" font-weight="bold" fill="#333">后处理模块</text>
+  <text x="450" y="560" text-anchor="middle" font-size="10" fill="#666">NMS + Top-K选择</text>
+  <text x="450" y="575" text-anchor="middle" font-size="10" fill="#666">+ 坐标缩放</text>
+  <text x="450" y="590" text-anchor="middle" font-size="10" fill="#666">+ 分数计算</text>
+  
+  <!-- 最终输出 -->
+  <rect x="350" y="640" width="200" height="60" rx="10" fill="#e8f5e8" stroke="#4caf50" stroke-width="3"/>
+  <text x="450" y="665" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">最终输出</text>
+  <text x="450" y="685" text-anchor="middle" font-size="12" fill="#666">关键点 + 描述符 + 分数</text>
+  
+  <!-- 连接线 -->
+  <!-- 输入到预处理 -->
+  <line x1="170" y1="110" x2="220" y2="110" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- 预处理到Block1 -->
+  <line x1="320" y1="110" x2="370" y2="110" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Block1到Block2 -->
+  <line x1="450" y1="105" x2="470" y2="105" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Skip1连接 -->
+  <line x1="410" y1="130" x2="410" y2="150" stroke="#7b1fa2" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="410" y1="180" x2="470" y2="130" stroke="#7b1fa2" stroke-width="1" stroke-dasharray="3,3" marker-end="url(#arrowhead)"/>
+  
+  <!-- Block2到语义注意力 -->
+  <line x1="510" y1="130" x2="510" y2="150" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- 语义注意力到Block3 -->
+  <line x1="590" y1="190" x2="610" y2="190" stroke="#333" stroke-width="2"/>
+  <line x1="610" y1="190" x2="610" y2="130" stroke="#333" stroke-width="2"/>
+  <line x1="610" y1="130" x2="620" y2="130" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Block3到Block4 -->
+  <line x1="700" y1="105" x2="720" y2="105" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Block4到Block5 -->
+  <line x1="800" y1="105" x2="820" y2="105" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- Block3/4/5到特征融合 -->
+  <line x1="660" y1="130" x2="660" y2="175" stroke="#333" stroke-width="1"/>
+  <line x1="660" y1="175" x2="720" y2="175" stroke="#333" stroke-width="1" marker-end="url(#arrowhead)"/>
+  
+  <line x1="760" y1="130" x2="760" y2="175" stroke="#333" stroke-width="1"/>
+  
+  <line x1="860" y1="130" x2="860" y2="175" stroke="#333" stroke-width="1"/>
+  <line x1="860" y1="175" x2="820" y2="175" stroke="#333" stroke-width="1" marker-end="url(#arrowhead)"/>
+  
+  <!-- 特征融合到输出特征 -->
+  <line x1="820" y1="175" x2="850" y2="175" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- 特征到关键点检测器 -->
+  <line x1="900" y1="200" x2="900" y2="250" stroke="#333" stroke-width="2"/>
+  <line x1="900" y1="250" x2="200" y2="250" stroke="#333" stroke-width="2"/>
+  <line x1="200" y1="250" x2="200" y2="300" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- 语义注意力到关键点检测器 -->
+  <line x1="530" y1="230" x2="530" y2="260" stroke="#388e3c" stroke-width="2"/>
+  <line x1="530" y1="260" x2="200" y2="260" stroke="#388e3c" stroke-width="2"/>
+  <line x1="200" y1="260" x2="200" y2="300" stroke="#388e3c" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- 特征到描述符生成器 -->
+  <line x1="900" y1="200" x2="900" y2="270" stroke="#333" stroke-width="2"/>
+  <line x1="900" y1="270" x2="550" y2="270" stroke="#333" stroke-width="2"/>
+  <line x1="550" y1="270" x2="550" y2="300" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- 语义注意力到描述符生成器 -->
+  <line x1="590" y1="230" x2="590" y2="280" stroke="#388e3c" stroke-width="2"/>
+  <line x1="590" y1="280" x2="550" y2="280" stroke="#388e3c" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- 关键点检测器到输出 -->
+  <line x1="200" y1="380" x2="200" y2="400" stroke="#333" stroke-width="2"/>
+  <line x1="150" y1="400" x2="100" y2="400" stroke="#333" stroke-width="2"/>
+  <line x1="100" y1="400" x2="100" y2="420" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <line x1="250" y1="400" x2="220" y2="400" stroke="#333" stroke-width="2"/>
+  <line x1="220" y1="400" x2="220" y2="420" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- 描述符生成器到输出 -->
+  <line x1="550" y1="380" x2="550" y2="420" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- 语义注意力到输出 -->
+  <line x1="530" y1="230" x2="530" y2="445" stroke="#388e3c" stroke-width="2"/>
+  <line x1="530" y1="445" x2="650" y2="445" stroke="#388e3c" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- 输出到后处理 -->
+  <line x1="100" y1="470" x2="100" y2="500" stroke="#333" stroke-width="1"/>
+  <line x1="100" y1="500" x2="450" y2="500" stroke="#333" stroke-width="1"/>
+  <line x1="450" y1="500" x2="450" y2="520" stroke="#333" stroke-width="1" marker-end="url(#arrowhead)"/>
+  
+  <line x1="220" y1="470" x2="220" y2="510" stroke="#333" stroke-width="1"/>
+  <line x1="220" y1="510" x2="450" y2="510" stroke="#333" stroke-width="1" marker-end="url(#arrowhead)"/>
+  
+  <line x1="550" y1="470" x2="550" y2="520" stroke="#333" stroke-width="1"/>
+  <line x1="550" y1="520" x2="450" y2="520" stroke="#333" stroke-width="1" marker-end="url(#arrowhead)"/>
+  
+  <!-- 后处理到最终输出 -->
+  <line x1="450" y1="600" x2="450" y2="640" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- 图例 -->
+  <rect x="900" y="520" width="280" height="180" rx="10" fill="#ffffff" stroke="#666" stroke-width="1"/>
+  <text x="1040" y="540" text-anchor="middle" font-size="14" font-weight="bold" fill="#333">图例</text>
+  
+  <rect x="920" y="550" width="40" height="20" rx="3" fill="url(#inputGrad)" stroke="#1976d2" stroke-width="1"/>
+  <text x="970" y="565" font-size="12" fill="#333">输入/预处理</text>
+  
+  <rect x="920" y="575" width="40" height="20" rx="3" fill="url(#backboneGrad)" stroke="#7b1fa2" stroke-width="1"/>
+  <text x="970" y="590" font-size="12" fill="#333">骨干网络</text>
+  
+  <rect x="920" y="600" width="40" height="20" rx="3" fill="url(#semanticGrad)" stroke="#388e3c" stroke-width="1"/>
+  <text x="970" y="615" font-size="12" fill="#333">语义模块</text>
+  
+  <rect x="920" y="625" width="40" height="20" rx="3" fill="url(#detectorGrad)" stroke="#e65100" stroke-width="1"/>
+  <text x="970" y="640" font-size="12" fill="#333">检测分支</text>
+  
+  <rect x="920" y="650" width="40" height="20" rx="3" fill="url(#descriptorGrad)" stroke="#c2185b" stroke-width="1"/>
+  <text x="970" y="665" font-size="12" fill="#333">描述符分支</text>
+  
+  <line x1="920" y1="680" x2="960" y2="680" stroke="#388e3c" stroke-width="2"/>
+  <text x="970" y="685" font-size="12" fill="#333">语义信息流</text>
+  
+</svg>

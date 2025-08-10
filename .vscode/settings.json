@@ -1,0 +1,65 @@
+{
+  // MCP (Model Context Protocol) 服务器配置
+  "mcp.servers": {
+    "filesystem": {
+      "command": "node",
+      "args": [
+        "c:\\Users\\王敬尧\\Desktop\\idea\\mcp_servers\\src\\filesystem\\dist\\index.js"
+      ],
+      "env": {
+        "NODE_PATH": "c:\\Users\\王敬尧\\Desktop\\idea\\mcp_servers\\node_modules"
+      }
+    },
+    "memory": {
+      "command": "node", 
+      "args": [
+        "c:\\Users\\王敬尧\\Desktop\\idea\\mcp_servers\\src\\memory\\dist\\index.js"
+      ],
+      "env": {
+        "NODE_PATH": "c:\\Users\\王敬尧\\Desktop\\idea\\mcp_servers\\node_modules"
+      }
+    },
+    "everything": {
+      "command": "node",
+      "args": [
+        "c:\\Users\\王敬尧\\Desktop\\idea\\mcp_servers\\src\\everything\\dist\\index.js"
+      ],
+      "env": {
+        "NODE_PATH": "c:\\Users\\王敬尧\\Desktop\\idea\\mcp_servers\\node_modules"
+      }
+    },
+    "sequential-thinking": {
+      "command": "node",
+      "args": [
+        "c:\\Users\\王敬尧\\Desktop\\idea\\mcp_servers\\src\\sequentialthinking\\dist\\index.js"
+      ],
+      "env": {
+        "NODE_PATH": "c:\\Users\\王敬尧\\Desktop\\idea\\mcp_servers\\node_modules"
+      }
+    },
+    "smithery-sequential-thinking": {
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "@smithery/cli@latest",
+        "run",
+        "@smithery-ai/server-sequential-thinking",
+        "--key",
+        "https://server.smithery.ai/@smithery-ai/server-sequential-thinking/mcp",
+        "--config",
+        "\"{\\\"debug\\\":true}\""
+      ]
+    }
+  },
+  // VS Code 工作区设置
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/.git": true,
+    "**/__pycache__": true,
+    "**/*.pyc": true
+  },
+  "python.defaultInterpreterPath": "./venv/bin/python",
+  "python.terminal.activateEnvironment": true
+}

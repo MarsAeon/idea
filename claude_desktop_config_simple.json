@@ -1,0 +1,30 @@
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\王敬尧\\Desktop\\idea\\mcp_servers\\src\\filesystem\\dist\\index.js",
+        "C:\\Users\\王敬尧\\Desktop\\idea"
+      ]
+    },
+    "memory": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\王敬尧\\Desktop\\idea\\mcp_servers\\src\\memory\\dist\\index.js"
+      ]
+    },
+    "git": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\王敬尧\\Desktop\\idea\\mcp_servers\\src\\git\\dist\\index.js",
+        "C:\\Users\\王敬尧\\Desktop\\idea"
+      ]
+    },
+    "time": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\王敬尧\\Desktop\\idea\\mcp_servers\\src\\time\\dist\\index.js"
+      ]
+    }
+  }
+}

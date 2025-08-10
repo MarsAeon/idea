@@ -1,0 +1,50 @@
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\王敬尧\\Desktop\\idea\\mcp_servers\\src\\filesystem\\dist\\index.js",
+        "C:\\Users\\王敬尧\\Desktop\\idea"
+      ]
+    },
+    "memory": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\王敬尧\\Desktop\\idea\\mcp_servers\\src\\memory\\dist\\index.js"
+      ]
+    },
+    "everything": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\王敬尧\\Desktop\\idea\\mcp_servers\\src\\everything\\dist\\index.js"
+      ]
+    },
+    "fetch": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\王敬尧\\Desktop\\idea\\mcp_servers\\src\\fetch\\dist\\index.js"
+      ]
+    },
+    "sequential-thinking": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\王敬尧\\Desktop\\idea\\mcp_servers\\src\\sequentialthinking\\dist\\index.js"
+      ]
+    },
+    "smithery-sequential-thinking": {
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "@smithery/cli@latest",
+        "run",
+        "@smithery-ai/server-sequential-thinking",
+        "--key",
+        "https://server.smithery.ai/@smithery-ai/server-sequential-thinking/mcp",
+        "--config",
+        "\"{\\\"debug\\\":true}\""
+      ]
+    }
+  }
+}

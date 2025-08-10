@@ -1,0 +1,22 @@
+# Minimal requirements for fusion_xfeat_sfd2
+# If you build the provided CUDA Docker image, torch is already included.
+# For local installs without Docker, uncomment one of the torch lines below.
+torch==2.3.1+cu121 torchvision==0.18.1+cu121 --index-url https://download.pytorch.org/whl/cu121
+# torch==2.3.1 torchvision==0.18.1  # CPU-only
+
+numpy>=1.23
+opencv-python-headless>=4.8
+kornia>=0.7.1
+Pillow>=10.0
+matplotlib>=3.7
+PyYAML>=6.0
+pandas>=2.0
+scipy>=1.10
+tqdm>=4.66
+
+# Optional, for logging/plotting
+seaborn>=0.12
+
+# If you use wandb/tensorboard, uncomment as needed
+# tensorboard>=2.12
+# wandb>=0.16
